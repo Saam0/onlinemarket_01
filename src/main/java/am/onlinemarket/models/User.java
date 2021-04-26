@@ -11,34 +11,45 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column( nullable = false)
     private String eMail;   // naev vorpes login e:
+
+    @Column(nullable = false)
     private String firsName;
+
+    @Column(nullable = false)
     private String lastName;
+
+    @Column(nullable = false)
     private String password;
-    private String phoneNumber;
+
+    @Column(nullable = false)
+    private boolean status;
+
+    @OneToOne(cascade = CascadeType.ALL )
+    @JoinColumn(name = "id_contacts")
+    private Contacts contacts;
+
+    @Column(nullable = false)
     private Date regDate;
-    private Date modifyDate;
-    @Transient
-    private String passwordConfirm;
+
     @ManyToMany()
     private Set<Role> roles;
-//    private String role;
 
 
     public User() {
     }
 
-    public User(Long id, String eMail, String firsName, String lastName, String password, String phoneNumber,
-                Date regDate, Date modifyDate, String passwordConfirm, Set<Role> roles) {
+    public User(Long id, String eMail, String firsName, String lastName, String password, boolean status, Contacts contacts, Date regDate, Set<Role> roles) {
         this.id = id;
         this.eMail = eMail;
         this.firsName = firsName;
         this.lastName = lastName;
         this.password = password;
-        this.phoneNumber = phoneNumber;
+        this.status = status;
+        this.contacts = contacts;
         this.regDate = regDate;
-        this.modifyDate = modifyDate;
-        this.passwordConfirm = passwordConfirm;
         this.roles = roles;
     }
 
@@ -82,12 +93,20 @@ public class User {
         this.password = password;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public Contacts getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Contacts contacts) {
+        this.contacts = contacts;
     }
 
     public Date getRegDate() {
@@ -96,22 +115,6 @@ public class User {
 
     public void setRegDate(Date regDate) {
         this.regDate = regDate;
-    }
-
-    public Date getModifyDate() {
-        return modifyDate;
-    }
-
-    public void setModifyDate(Date modifyDate) {
-        this.modifyDate = modifyDate;
-    }
-
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
     }
 
     public Set<Role> getRoles() {
@@ -130,12 +133,10 @@ public class User {
                 ", firsName='" + firsName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                ", status=" + status +
+                ", contacts=" + contacts +
                 ", regDate=" + regDate +
-                ", modifyDate=" + modifyDate +
-                ", passwordConfirm='" + passwordConfirm + '\'' +
                 ", roles=" + roles +
                 '}';
     }
-
 }
