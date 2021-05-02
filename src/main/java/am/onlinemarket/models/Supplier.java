@@ -15,18 +15,15 @@ public class Supplier {
     @OneToOne(cascade = CascadeType.ALL )
     @JoinColumn(name = "id_contacts")
     private Contacts contacts;
-//
-//    @OneToMany(mappedBy = "supplier")
-//    private Product product;
+
 
     public Supplier() {
     }
 
-    public Supplier(Long id, String title, Contacts contacts, Product product) {
+    public Supplier(Long id, String title, Contacts contacts) {
         this.id = id;
         this.title = title;
         this.contacts = contacts;
-//        this.product = product;
     }
 
     public Long getId() {
@@ -53,21 +50,12 @@ public class Supplier {
         this.contacts = contacts;
     }
 
-//    public Product getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(Product product) {
-//        this.product = product;
-//    }
-
     @Override
     public String toString() {
         return "Supplier{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", contacts=" + contacts +
-//                ", product=" + product +
                 '}';
     }
 }
