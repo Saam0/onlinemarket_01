@@ -12,6 +12,9 @@ public class Contacts {
     @OneToOne(mappedBy = "contacts")
     private User user;
 
+    @OneToOne(mappedBy = "contacts")
+    private Supplier supplier;
+
     @Column(nullable = false)
     private String phone;
 
@@ -25,20 +28,21 @@ public class Contacts {
     private String street;
 
     @Column(nullable = false)
-    private String home;
+    private String homeOrOffice;
 
 
     public Contacts() {
     }
 
-    public Contacts(Long id, User user, String phone, String country, String city, String street, String home) {
+    public Contacts(Long id, User user, Supplier supplier, String phone, String country, String city, String street, String homeOrOffice) {
         this.id = id;
         this.user = user;
+        this.supplier = supplier;
         this.phone = phone;
         this.country = country;
         this.city = city;
         this.street = street;
-        this.home = home;
+        this.homeOrOffice = homeOrOffice;
     }
 
     public Long getId() {
@@ -55,6 +59,14 @@ public class Contacts {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     public String getPhone() {
@@ -89,12 +101,12 @@ public class Contacts {
         this.street = street;
     }
 
-    public String getHome() {
-        return home;
+    public String getHomeOrOffice() {
+        return homeOrOffice;
     }
 
-    public void setHome(String home) {
-        this.home = home;
+    public void setHomeOrOffice(String homeOrOffice) {
+        this.homeOrOffice = homeOrOffice;
     }
 
     @Override
@@ -102,11 +114,12 @@ public class Contacts {
         return "Contacts{" +
                 "id=" + id +
                 ", user=" + user +
+                ", supplier=" + supplier +
                 ", phone='" + phone + '\'' +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +
-                ", home='" + home + '\'' +
+                ", homeOrOffice='" + homeOrOffice + '\'' +
                 '}';
     }
 }
