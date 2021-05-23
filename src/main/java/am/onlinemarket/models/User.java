@@ -13,7 +13,7 @@ public class User {
     private Long id;
 
     @Column( nullable = false)
-    private String eMail;   // naev vorpes login e:
+    private String email;   // naev vorpes login e:
 
     @Column(nullable = false)
     private String firsName;
@@ -24,7 +24,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private boolean status;
 
     @OneToOne(cascade = CascadeType.ALL )
@@ -41,9 +41,9 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String eMail, String firsName, String lastName, String password, boolean status, Contacts contacts, Date regDate, Set<Role> roles) {
+    public User(Long id, String email, String firsName, String lastName, String password, boolean status, Contacts contacts, Date regDate, Set<Role> roles) {
         this.id = id;
-        this.eMail = eMail;
+        this.email = email;
         this.firsName = firsName;
         this.lastName = lastName;
         this.password = password;
@@ -61,12 +61,12 @@ public class User {
         this.id = id;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirsName() {
@@ -129,7 +129,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", eMail='" + eMail + '\'' +
+                ", email='" + email + '\'' +
                 ", firsName='" + firsName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", password='" + password + '\'' +
