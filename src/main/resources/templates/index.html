@@ -3,14 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-<!--
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+ <!--   <link rel="stylesheet" href="../static/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/online-market.css">
-
+-->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/online-market.js"></script>
--->
     <title>Online market</title>
 
     <meta charset="utf-8">
@@ -31,24 +29,30 @@
 
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">OM</a>
+        <a class="navbar-brand " href="#">OM</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Menu<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
+            </li>-->
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+
+
+<!--        Login form -->
+        <div th:insert="login :: login">Login</div>
+
+        <div th:replace="customer/new :: registration">registration</div>
+
     </div>
 </nav>
-
 </body>
 </html>

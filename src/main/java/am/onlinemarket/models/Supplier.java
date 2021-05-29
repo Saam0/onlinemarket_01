@@ -1,6 +1,9 @@
 package am.onlinemarket.models;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Entity
 @Table(name = "supplier_tab")
@@ -10,19 +13,19 @@ public class Supplier {
     private Long id;
 
     @Column( nullable = false)
-    private String title;
+    private String firmName;
 
-    @OneToOne(cascade = CascadeType.ALL )
-    @JoinColumn(name = "id_contacts")
-    private Contacts contacts;
-
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    @JoinTable(name = "supplier_contacts", joinColumns = {@JoinColumn(name = "supplier_id")},
+            inverseJoinColumns = {@JoinColumn(name = "contacts_id")})
+    private Set<Contact> contacts;
 
     public Supplier() {
     }
 
-    public Supplier(Long id, String title, Contacts contacts) {
+    public Supplier(Long id, String firmName, Set<Contact> contacts) {
         this.id = id;
-        this.title = title;
+        this.firmName = firmName;
         this.contacts = contacts;
     }
 
@@ -34,19 +37,19 @@ public class Supplier {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getFirmName() {
+        return firmName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setFirmName(String firmName) {
+        this.firmName = firmName;
     }
 
-    public Contacts getContacts() {
+    public Set<Contact> getContacts() {
         return contacts;
     }
 
-    public void setContacts(Contacts contacts) {
+    public void setContacts(Set<Contact> contacts) {
         this.contacts = contacts;
     }
 
@@ -54,7 +57,7 @@ public class Supplier {
     public String toString() {
         return "Supplier{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
+                ", firmName='" + firmName + '\'' +
                 ", contacts=" + contacts +
                 '}';
     }

@@ -3,6 +3,7 @@ package am.onlinemarket.services.impl;
 import am.onlinemarket.exceptions.UserAlreadyExistException;
 import am.onlinemarket.models.Role;
 import am.onlinemarket.models.User;
+import am.onlinemarket.repositories.ContactRepository;
 import am.onlinemarket.repositories.RoleRepository;
 import am.onlinemarket.repositories.UserRepository;
 import am.onlinemarket.services.UserService;
@@ -23,12 +24,17 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    ContactRepository contactRepository;
+
+
 //    @Autowired
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public User save(User user) {
-        if (emailExists(user.getEmail())){
+
+        if (findByEmail(user.getEmail()).isPresent()){
             throw new UserAlreadyExistException("There is an account with that email address: " + user.getEmail());
         }
 
@@ -38,22 +44,22 @@ public class UserServiceImpl implements UserService {
         user.setRegDate(new Date());
         user.setRoles(roleRepository.findByRoleName("ROLE_USER"));
 
-
         return userRepository.save(user);
     }
 
-    private boolean emailExists(String email){
-        return userRepository.findByEmail(email)!=null;
-    }
+//    private boolean emailExists(String email){
+//        return userRepository.findByEmail(email)!=null;
+//    }
 
-    @Override
+
+        @Override
     public Optional<User> findById(Long id) {
         return Optional.empty();
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return Optional.empty();
+        return userRepository.findByEmail(email);
     }
 
     @Override

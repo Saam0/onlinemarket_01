@@ -3,7 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>New customer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--   <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+       <link rel="stylesheet" href="../static/css/online-market.css">
+   -->
+    <script src="../../static/js/bootstrap.min.js"></script>
+    <script src="../../static/js/online-market.js"></script>
+    <title>Online market</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,76 +18,158 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-<div class="container">
-    <h1>User registration</h1>
-    <form class="form-check-input" action="#" th:action="@{/user/new}" th:method="post" th:object="${userForm}">
-        <div class="form-group">
-            <label for="firstName">
-                First Name
-            </label>
-            <div>
-                <input id="firstName" type="text" name="firsName" th:field="*{firsName}" placeholder="Poxos">
-                <span class="help-block">required field</span> <!-- partadir tox-->
-            </div>
-        </div>
 
-        <div class="form-group">
-            <label for="lastName">
-                Last Name
-            </label>
-            <div>
-                <input id="lastName" type="text" name="lastName" th:field="*{lastName}" placeholder="Poxosyan">
-                <span class="help-block">required field</span> <!--partadir tox-->
-            </div>
-        </div>
 
-        <div class="form-group">
-            <label for="email">
-                Email
-            </label>
-            <div>
-                <input id="email" type="text" name="email" th:field="*{email}" placeholder="Poxos@gmail.com">
-                <span class="help-block">required field</span> <!--partadir tox-->
-            </div>
-        </div>
+<div th:fragment="registration">
 
-       <!-- <div class="form-group">
-            <label for="phoneNumber">
-                Phone number
-            </label>
-            <div>
-                <input id="phoneNumber" type="text" name="phoneNumber" th:field="*{phoneNumber}" placeholder="+374 55 20-10-10">
-                <span class="help-block">required field</span> &lt;!&ndash;partadir tox&ndash;&gt;
-            </div>
-        </div>
+<!--    <a th:href="@{/user/new}">aaa</a>-->
+<!--     <a th:href="@{/user/new}" role="button" class="btn btn-secondary popover-test" >button</a>-->
+<!--    <form th:method="get" th:action="@{/user/new}" action="#">-->
+    <button type="submit" class="btn btn-outline-success" data-toggle="modal" data-target="#myModal-1" th:method="get" th:action="@{/user/new}">
+        Registration
+    </button>
+<!--    </form>-->
+<!--     The Modal for Registration-->
+    <div class="modal" id="myModal-1">
+        <div class="modal-dialog modal-xs">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Registration</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+
+                    <form class="form-horizontal" action="#" th:action="@{/user/new}" method="post"
+                          th:object="${userForm}">
+
+                        <!--                    First Name-->
+                        <div class="form-group">
+                            <label class="control-label col-xs-3" for="firstName">First name:</label>
+                            <div class="col-xs-9">
+                                <input type="text" class="form-control" id="firstName" th:field="*{firsName}"
+                                       placeholder="Enter your first name">
+                            </div>
+                        </div>
+
+                        <!--                    Last Name-->
+                        <div class="form-group">
+                            <label class="control-label col-xs-3" for="lastName">Last Name:</label>
+                            <div class="col-xs-9">
+                                <input type="text" class="form-control" id="lastName" th:field="*{lastName}"
+                                       placeholder="Enter your last name">
+                            </div>
+                        </div>
+                   <!--     &lt;!&ndash;                    Date of Birth&ndash;&gt;
+                        <div class="form-group form-inline ">
+                            <label class="control-label col-xs-3">Date of Birth:</label>
+                            <div class="col-xs-3">
+                                <select class="form-control">
+                                    <option>Day</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-3">
+                                <select class="form-control">
+                                    <option>Month</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-3">
+                                <select class="form-control">
+                                    <option>Year</option>
+                                </select>
+                            </div>
+                        </div>
 -->
-        <div class="form-group">
-            <label for="password">
-                Password
-            </label>
-            <div>
-                <input id="password" type="password" name="password" th:field="*{password}" placeholder="*******">
-                <span class="help-block">required field</span> <!--partadir tox-->
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="confirmPass">
-                Password confirmation
-            </label>
-            <div>
-                <input id="confirmPass" type="password" name="confirmPass"  placeholder="*******">
-                <span class="help-block">required field</span> <!--partadir tox-->
-            </div>
-        </div>
+                        <!--                    Email-->
+                        <div class="form-group">
+                            <label class="control-label col-xs-3" for="inputEmail">Email:</label>
+                            <div class="col-xs-9">
+                                <input type="email" class="form-control" id="inputEmail" th:field="*{email}" placeholder="Email">
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-8">
-                <button class="btn btn-success" type="submit">Registration</button>
+                        <!--                    Password-->
+                        <div class="form-group">
+                            <label class="control-label col-xs-3" for="inputPassword">Password:</label>
+                            <div class="col-xs-9">
+                                <input type="password" class="form-control" id="inputPassword" th:field="*{password}" placeholder="Enter your password">
+                            </div>
+                        </div>
+
+                        <!--                    Confirm password:-->
+                        <div class="form-group">
+                            <label class="control-label col-xs-3" for="confirmPass">Confirm password:</label>
+                            <div class="col-xs-9">
+                                <input type="password" class="form-control" id="confirmPass" name="confirmPass" placeholder="Confirm password">
+                            </div>
+                        </div>
+
+
+                        <!--<div class="form-group">
+                            <label class="control-label col-xs-3" for="phoneNumber">Телефон:</label>
+                            <div class="col-xs-9">
+                                <input type="tel" class="form-control" id="phoneNumber"
+                                       placeholder="Введите номер телефона">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-3" for="postalAddress">Адрес:</label>
+                            <div class="col-xs-9">
+                                <textarea rows="3" class="form-control" id="postalAddress"
+                                          placeholder="Введите адрес"></textarea>
+                            </div>
+                        </div>-->
+
+                        <!--                    Gender:-->
+                     <!--   <div class="form-group">
+                            <label class="control-label col-xs-3">Gender:</label>
+                            <div class="col-xs-2">
+                                <label class="radio-inline">
+                                    <input type="radio" name="genderRadios" value="male"> Male
+                                </label>
+                            </div>
+                            <div class="col-xs-2">
+                                <label class="radio-inline">
+                                    <input type="radio" name="genderRadios" value="female"> Female
+                                </label>
+                            </div>
+                        </div>
+
+-->
+                        <div class="form-group">
+                            <div class="col-xs-offset-3 col-xs-9">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="agree"> I agree with the <a href="#">conditions</a>.
+                                </label>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="form-group">
+                            <div class="col-xs-offset-3 col-xs-9">
+                                <input type="submit" class="btn btn-primary" value="Submit">
+                                <input type="reset" class="btn btn-default" value="Reset form">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
             </div>
         </div>
-
-    </form>
+    </div>
 </div>
+
+
 </body>
 </html>

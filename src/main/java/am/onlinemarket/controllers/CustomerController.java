@@ -8,36 +8,31 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("")
 public class CustomerController {
 
     @Autowired
     UserService userService;
 
 
-    @GetMapping("/new")
+    @GetMapping("")
     public String getRegNewUser(Model model){
 
+        System.out.println("+++++++++++++++===================");
         model.addAttribute("userForm", new User());
-        return "customer/new";
+        return "index";
     }
 
-    @PostMapping("/new")
+    @PostMapping("/user/new")
     public String postRegNewUser(Model model,
                              @ModelAttribute("userForm") User userForm,
                              @RequestParam(value = "confirmPass") String confirmPass){
-        System.out.println(userForm.getFirsName());
-        System.out.println(userForm.getPassword());
-        System.out.println(confirmPass);
-
 
         if (userForm.getPassword().equals(confirmPass)) {
             userService.save(userForm);
 
             return "redirect:/index";
         }
-
-
         return "customer/new";
     }
 

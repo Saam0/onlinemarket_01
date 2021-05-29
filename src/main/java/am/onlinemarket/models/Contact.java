@@ -1,19 +1,22 @@
 package am.onlinemarket.models;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Entity
 @Table(name = "contacts_tab")
-public class Contacts {
+public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "contacts")
-    private User user;
+    @ManyToMany(mappedBy = "contacts")
+    private Set<User> user;
 
-    @OneToOne(mappedBy = "contacts")
-    private Supplier supplier;
+    @ManyToMany(mappedBy = "contacts")
+    private Set<Supplier> supplier;
 
     @Column(nullable = false)
     private String phone;
@@ -31,10 +34,10 @@ public class Contacts {
     private String homeOrOffice;
 
 
-    public Contacts() {
+    public Contact() {
     }
 
-    public Contacts(Long id, User user, Supplier supplier, String phone, String country, String city, String street, String homeOrOffice) {
+    public Contact(Long id, Set<User> user, Set<Supplier> supplier, String phone, String country, String city, String street, String homeOrOffice) {
         this.id = id;
         this.user = user;
         this.supplier = supplier;
@@ -53,19 +56,19 @@ public class Contacts {
         this.id = id;
     }
 
-    public User getUser() {
+    public Set<User> getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Set<User> user) {
         this.user = user;
     }
 
-    public Supplier getSupplier() {
+    public Set<Supplier> getSupplier() {
         return supplier;
     }
 
-    public void setSupplier(Supplier supplier) {
+    public void setSupplier(Set<Supplier> supplier) {
         this.supplier = supplier;
     }
 
@@ -111,7 +114,7 @@ public class Contacts {
 
     @Override
     public String toString() {
-        return "Contacts{" +
+        return "Contact{" +
                 "id=" + id +
                 ", user=" + user +
                 ", supplier=" + supplier +
