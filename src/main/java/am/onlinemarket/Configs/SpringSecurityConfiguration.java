@@ -18,17 +18,17 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
-
+/*
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(superPAss())
                 .usersByUsernameQuery(
-                        "Select login,password,status FROM user_tab WHERE email = ?")
+                        "Select email,password,status FROM user_tab WHERE email = ?")
                 .authoritiesByUsernameQuery(
-                        "Select login,role from user_tab where email=?");
+                        "Select email from user_tab where email=?");
 
-    }
+    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

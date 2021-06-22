@@ -1,5 +1,7 @@
 package am.onlinemarket.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -16,15 +18,6 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
-
-    public Role() {
-    }
-
-    public Role(Long id, String roleName, Set<User> users) {
-        this.id = id;
-        this.roleName = roleName;
-        this.users = users;
-    }
 
     public Long getId() {
         return id;
@@ -48,14 +41,5 @@ public class Role {
 
     public void setUsers(Set<User> users) {
         this.users = users;
-    }
-
-    @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", roleName='" + roleName + '\'' +
-                ", users=" + users +
-                '}';
     }
 }

@@ -30,8 +30,9 @@ public class CustomerController {
 
         if (userForm.getPassword().equals(confirmPass)) {
             userService.save(userForm);
+            System.out.println("11111111111111111111+++++++++++++++++++++++++");
 
-            return "redirect:/index";
+            return "hello";
         }
         return "customer/new";
     }
