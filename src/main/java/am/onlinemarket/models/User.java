@@ -33,9 +33,8 @@ public class User {
     private Date regDate;
 
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-    @JoinTable(name = "user_contacts", joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "contacts_id")})
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    @JoinColumn(name = "user_id")
     private Set<Contact> contacts;
 
 

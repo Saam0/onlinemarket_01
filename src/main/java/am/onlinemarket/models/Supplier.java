@@ -18,10 +18,8 @@ public class Supplier {
     @Column(nullable = false)
     private String supplierName;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "supplier_contacts", joinColumns = {@JoinColumn(name = "supplier_id")},
-            inverseJoinColumns = {@JoinColumn(name = "contacts_id")})
-    private Set<Contact> contacts;
+
+
 
 
 

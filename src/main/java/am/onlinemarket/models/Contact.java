@@ -3,6 +3,7 @@ package am.onlinemarket.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -15,14 +16,7 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(mappedBy = "contacts")
-    private Set<User> user;
-
-    @ManyToMany(mappedBy = "contacts")
-    private Set<Supplier> supplier;
-
-    @Column(nullable = false)
-    private String phone;
+    private String phones;
 
     @Column(nullable = false)
     private String country;

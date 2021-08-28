@@ -20,7 +20,7 @@ public class Product {
 //    private Volume volume;
 
 
-    private boolean available;
+//    private boolean available;
 
 
     @Column(nullable = false)
