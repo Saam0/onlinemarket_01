@@ -17,9 +17,9 @@ public class Bill {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
-    private Order order;
+//    @OneToOne
+//    @PrimaryKeyJoinColumn
+//    private Order order;
 
     private double totalCost;
 

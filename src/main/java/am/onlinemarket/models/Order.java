@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "order")
+@Table(name = "order_tab")
 public class Order {
 
     @Id
@@ -22,14 +22,14 @@ public class Order {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "order")
     private Set<OrderProduct> orderProducts;
 
-    @OneToOne
-    private Bill bill;
+//    @OneToOne
+//    private Bill bill;
 
     private int quantity;
 
     private double productsCost;
 
-    private Date dateCreated;
+//    private Date dateCreated;
 
     private int deliveryCost;
 
