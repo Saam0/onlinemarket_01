@@ -20,7 +20,7 @@ public class Bill {
 //    @OneToOne
 //    @PrimaryKeyJoinColumn
 //    private Order order;
-
+//6454654
     private double totalCost;
 
     private boolean payed;
