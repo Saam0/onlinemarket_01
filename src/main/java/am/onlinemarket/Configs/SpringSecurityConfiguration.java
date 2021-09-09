@@ -1,3 +1,4 @@
+/*
 package am.onlinemarket.Configs;
 
 
@@ -18,6 +19,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource dataSource;
 
+*/
 /*
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -28,7 +30,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery(
                         "Select email from user_tab where email=?");
 
-    }*/
+    }*//*
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -37,7 +40,14 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/reg","/block").anonymous()
 //                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/new").anonymous()
-                .antMatchers("/index").anonymous()
+                .antMatchers("/").anonymous()
+                .antMatchers("/user/new1").anonymous()
+                .antMatchers("/customer/new").anonymous()
+                .antMatchers("/customer/_new1").anonymous()
+                .antMatchers("/customer/modal2").anonymous()
+                .antMatchers("/customer/modal1").anonymous()
+                .antMatchers("/customer/index").anonymous()
+//                .antMatchers("/index").permitAll()
 //                .antMatchers("/add-user","/reset/**").permitAll()
 
 //                .antMatchers("/login/**").anonymous()
@@ -65,3 +75,4 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 }
+*/

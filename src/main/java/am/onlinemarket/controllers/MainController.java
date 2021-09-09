@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/")
 public class MainController {
     @Autowired
     UserService userService;
 
 
 
-    @GetMapping("/index")
-    public String index(Model model){
-
-
-        return "index";
-    }
+//    @GetMapping("/")
+//    public String index(Model model){
+//
+//
+//        return "index";
+//    }
 
 /*
     @GetMapping("")
@@ -39,7 +39,7 @@ public class MainController {
 
     @GetMapping("/login")
     public String getLogin(){
-
+        System.out.println("getlogin++++++++++++++++++");
         return "login";
     }
 

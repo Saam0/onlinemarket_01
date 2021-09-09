@@ -27,9 +27,9 @@ public class Contact {
     @Column(nullable = false)
     private String address;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+   /* @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name = "contact_id")
-    private Set<User> users;
+    private Set<User> users;*/
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name = "contact_id")

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!--    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">-->
+    <link rel="stylesheet" type="text/css" href="/css/online-market.css">
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/online-market.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+            integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+            crossorigin="anonymous"></script>
+
+    <title>New user</title>
+</head>
+<body>
+<div th:fragment="registration">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                <form class="form" action="#" th:action="@{/user/new}" method="post"
+                      th:object="${userForm}">
+
+                    <!--                    First Name-->
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="firstName">First name:</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="firstName" th:field="*{firsName}"
+                                   placeholder="Enter your first name">
+                        </div>
+                    </div>
+
+                    <!--                    Last Name-->
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="lastName">Last Name:</label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="lastName" th:field="*{lastName}"
+                                   placeholder="Enter your last name">
+                        </div>
+                    </div>
+                    <!--     &lt;!&ndash;                    Date of Birth&ndash;&gt;
+                         <div class="form-group form-inline ">
+                             <label class="control-label col-xs-3">Date of Birth:</label>
+                             <div class="col-xs-3">
+                                 <select class="form-control">
+                                     <option>Day</option>
+                                 </select>
+                             </div>
+                             <div class="col-xs-3">
+                                 <select class="form-control">
+                                     <option>Month</option>
+                                 </select>
+                             </div>
+                             <div class="col-xs-3">
+                                 <select class="form-control">
+                                     <option>Year</option>
+                                 </select>
+                             </div>
+                         </div>
+            -->
+                    <!--                    Email-->
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="inputEmail">Email:</label>
+                        <div class="col-xs-9">
+                            <input type="email" class="form-control" id="inputEmail" th:field="*{email}"
+                                   placeholder="Email">
+                        </div>
+                    </div>
+
+
+                    <!--                    Password-->
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="inputPassword">Password:</label>
+                        <div class="col-xs-9">
+                            <input type="password" class="form-control" id="inputPassword" th:field="*{password}"
+                                   placeholder="Enter your password">
+                        </div>
+                    </div>
+
+                    <!--                    Confirm password:-->
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="confirmPass">Confirm password:</label>
+                        <div class="col-xs-9">
+                            <input type="password" class="form-control" id="confirmPass" name="confirmPass"
+                                   placeholder="Confirm password">
+                        </div>
+                    </div>
+
+
+                    <!--<div class="form-group">
+                        <label class="control-label col-xs-3" for="phoneNumber">Телефон:</label>
+                        <div class="col-xs-9">
+                            <input type="tel" class="form-control" id="phoneNumber"
+                                   placeholder="Введите номер телефона">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="postalAddress">Адрес:</label>
+                        <div class="col-xs-9">
+                            <textarea rows="3" class="form-control" id="postalAddress"
+                                      placeholder="Введите адрес"></textarea>
+                        </div>
+                    </div>-->
+
+                    <!--                    Gender:-->
+                    <!--   <div class="form-group">
+                           <label class="control-label col-xs-3">Gender:</label>
+                           <div class="col-xs-2">
+                               <label class="radio-inline">
+                                   <input type="radio" name="genderRadios" value="male"> Male
+                               </label>
+                           </div>
+                           <div class="col-xs-2">
+                               <label class="radio-inline">
+                                   <input type="radio" name="genderRadios" value="female"> Female
+                               </label>
+                           </div>
+                       </div>
+
+            -->
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-9">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="agree"> I agree with the <a href="#">conditions</a>.
+                            </label>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-9">
+                            <input type="submit" class="btn btn-primary" value="Submit">
+                            <input type="reset" class="btn btn-outline-secondary" value="Reset form">
+                            <a class="btn btn-outline-secondary" th:href="@{/}">Veradardz</a>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

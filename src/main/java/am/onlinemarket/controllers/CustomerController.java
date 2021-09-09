@@ -1,5 +1,6 @@
 package am.onlinemarket.controllers;
 
+import am.onlinemarket.models.Contact;
 import am.onlinemarket.models.User;
 import am.onlinemarket.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +16,39 @@ public class CustomerController {
     UserService userService;
 
 
-    @GetMapping("")
-    public String getRegNewUser(Model model){
 
-        System.out.println("+++++++++++++++===================");
+//    @GetMapping("/index")
+//    public String getRegNewUser(Model model){
+//
+//        System.out.println("+++++++++++++++===================");
+////        model.addAttribute("userForm", new User());
+//        return "index";
+//    }
+
+
+//    @GetMapping("")
+//    public String getRegNewUsers(Model model){
+//
+//        System.out.println("----------------===================");
+//        model.addAttribute("userForm", new User());
+//        return "index";
+//    }
+
+    @GetMapping("/user/new")
+    public String getRegNewUsers(Model model){
+
+        System.out.println("----------------===================");
         model.addAttribute("userForm", new User());
         return "index";
     }
 
+
     @PostMapping("/user/new")
     public String postRegNewUser(Model model,
                              @ModelAttribute("userForm") User userForm,
+
                              @RequestParam(value = "confirmPass") String confirmPass){
+        System.out.println("11111111111111111111+++++++++++++++++++++++++");
 
         if (userForm.getPassword().equals(confirmPass)) {
             userService.save(userForm);
@@ -34,7 +56,7 @@ public class CustomerController {
 
             return "hello";
         }
-        return "customer/new";
+        return "index";
     }
 
 

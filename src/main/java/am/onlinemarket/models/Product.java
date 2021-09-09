@@ -15,6 +15,8 @@ public class Product {
     @Column(nullable = false)
     private String name;
 
+
+
 //    private DescriptionProduct description;
 
 //    private Volume volume;
@@ -23,8 +25,9 @@ public class Product {
 //    private boolean available;
 
 
-    @Column(nullable = false)
-    private String category;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_category")
+    private ProductCategory productCategory;
 
     @Column(nullable = false)
     private Double price;
@@ -36,4 +39,4 @@ public class Product {
 
 
 
-    }
+}

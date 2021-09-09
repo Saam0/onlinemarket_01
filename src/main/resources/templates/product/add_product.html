@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!--    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">-->
+    <link rel="stylesheet" type="text/css" href="/css/online-market.css">
+
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/online-market.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+            integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+            crossorigin="anonymous"></script>
+
+
+    <title>Add product</title>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form th:action="@{/product/add}" method="post" th:object="${productForm}">
+                <!--                product name-->
+                <div class="form-group row">
+                    <label for="productName" class="col-2 ">Product name</label>
+                    <input type="text" class="form-control col-8" id="productName" th:field="*{name}"
+                           placeholder="Input product name">
+                </div>
+
+                <!--                productCategory-->
+                <!--   <div class="form-group row">
+                       <label for="productCategory" class="col-2 ">Product productCategory</label>
+                       <input type="text" class="form-control col-8" id="productCategory" th:field="*{productCategory}"
+                              placeholder="Input productCategory">
+                   </div>
+   -->
+                <!--                productCategory-->
+                <div class="form-group row">
+                    <label for="category" class="col-2">Product Category</label>
+                    <div class="btn-group">
+                        <select class="form-control col-8" id="category" name="category" th:field="*{productCategory}">
+                            <option th:each="categ : ${productCategory}" th:text="${categ.categoryName}"
+                                    th:value="${categ.id}"></option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <!--                price-->
+                <div class="form-group row">
+                    <label for="price" class="col-2 ">Input price</label>
+                    <input type="text" class="form-control col-8" id="price" th:field="*{price}"
+                           placeholder="Input price">
+                </div>
+
+                <!--                supplier-->
+                <div class="form-group row">
+                    <label for="supplier" class="col-2 ">Supplier name</label>
+                    <input type="text" class="form-control col-8" id="supplier" name="supplierName"
+                           placeholder="Input supplier name">
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                        <a class="btn btn-outline-primary" th:href="@{/}">Veradardz</a>
+
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
