@@ -46,15 +46,15 @@
                 <tbody>
                 <tr th:each="prod, stat:${productList}">
                     <td th:utext="${prod.getId()}"></td>
-                    <td th:utext="${prod.getProductCategory()}"></td>
+                    <td th:utext="${prod.getProductCategory().getCategoryName()}"></td>
                     <td th:utext="${prod.getName()}"></td>
                     <td th:utext="${prod.getPrice()}"></td>
-                    <td th:utext="${prod.getSupplier()}"></td>
+                    <td th:utext="${prod.getSupplier().getSupplierName()}"></td>
                     <td>
 
                         <form th:action="@{/product/product-list}" th:method="post">
-
-                            <button type="submit" name="removeProduct" th:value="${prod.getId()}">
+                            <input type="hidden" name="removeProduct" th:value="${prod.getId()}"/>
+                            <button type="submit"  >
                                 Remove row
                             </button>
                         </form>

@@ -11,11 +11,13 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "contacts_tab")
+
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String phones;
 
     @Column(nullable = false)
@@ -34,5 +36,8 @@ public class Contact {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
     @JoinColumn(name = "contact_id")
     private Set<Supplier> suppliers;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    private User user;
 
 }

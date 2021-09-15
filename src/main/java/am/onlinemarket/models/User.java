@@ -26,8 +26,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_contact")
+    @OneToOne()
     private Contact contact;
 
     @Column(nullable = false)

@@ -4,6 +4,7 @@ package am.onlinemarket.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -15,5 +16,8 @@ public class ProductCategory {
 
     @Column(nullable = false)
     private String categoryName;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Product> product;
 
 }

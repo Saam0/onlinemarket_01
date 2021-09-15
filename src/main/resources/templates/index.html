@@ -37,13 +37,69 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!--   <div class="dropdown">
+           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Dropdown button
+           </button>
+           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               <a class="dropdown-item" href="#">Action</a>
+               <a class="dropdown-item" href="#">Another action</a>
+               <a class="dropdown-item" href="#">Something else here</a>
+           </div>
+       </div>
+
+       -->
+
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <a class="navbar-brand " href="#">OM</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Menu<span class="sr-only">(current)</span></a>
+
+            <li class=" dropdown ">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menu
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li th:each="global:${menuList}">
+                        <a class="dropdown-item" href="#" th:utext="${global.getGlobalType()}">Global type</a>
+                        <ul class="dropdown-menu dropdown-submenu">
+                            <li th:each="sub:${menuList}">
+                                <a class="dropdown-item" href="#"
+                                   th:utext="${sub.getGlobalType()==global.getGlobalType()}?${sub.getSubType()}">Sub
+                                    type</a>
+
+                                <ul class="dropdown-menu dropdown-submenu">
+
+                                    <li th:each="type:${menuList}">
+
+
+                                        <form th:action="@{/show}" th:method="get" th:if="${sub.getSubType()==type.getSubType()}">
+                                            <input type="hidden" th:value = "${type.getType()}"
+                                                   name="productType"  />
+
+                                            <button type="submit" th:utext="${type.getType()}" >
+                                                type
+                                            </button>
+                                        </form>
+
+
+
+
+                                       <!-- <button class="dropdown-item" type="submit" th:href="@{/show}" th:name="productType" th:value="${type.getType()}"
+                                                th:utext="${sub.getSubType()==type.getSubType()}?${type.getType()}">Type</button>-->
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
+
+
+            <!-- <li class="nav-item active">
+                 <a class="nav-link" href="#">Menu<span class="sr-only">(current)</span></a>
+             </li>-->
             <!--<li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
             </li>
@@ -64,7 +120,6 @@
         </div>
 
 
-
     </div>
 
 </nav>
@@ -73,8 +128,6 @@
 <div th:if="${userForm}">
     <div th:replace="customer/regform :: registration">registration</div>
 </div>
-
-
 
 
 <div class="row" th:if="${userForm}==null">

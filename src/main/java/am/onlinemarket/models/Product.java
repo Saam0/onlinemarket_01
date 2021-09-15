@@ -25,7 +25,7 @@ public class Product {
 //    private boolean available;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_category")
     private ProductCategory productCategory;
 
@@ -33,7 +33,7 @@ public class Product {
     private Double price;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_supplier")
     private Supplier supplier;
 

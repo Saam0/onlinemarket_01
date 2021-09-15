@@ -46,10 +46,13 @@ public class CustomerController {
     @PostMapping("/user/new")
     public String postRegNewUser(Model model,
                              @ModelAttribute("userForm") User userForm,
-
+                                 @ModelAttribute("contact") Contact contact,
                              @RequestParam(value = "confirmPass") String confirmPass){
         System.out.println("11111111111111111111+++++++++++++++++++++++++");
 
+        System.out.println(contact.getPhones());
+        System.out.println(contact.getCountry());
+        userForm.setContact(contact);
         if (userForm.getPassword().equals(confirmPass)) {
             userService.save(userForm);
             System.out.println("11111111111111111111+++++++++++++++++++++++++");

@@ -19,7 +19,8 @@ public class Supplier {
     private String supplierName;
 
 
-
+    @OneToMany
+    private Set<Product> products;
 
 
 

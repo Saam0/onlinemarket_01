@@ -85,13 +85,9 @@ public class ProductController {
     @PostMapping("/product-list")
     public String dellProduct(Model model,
                               @RequestParam(value = "removeProduct") Long removeProduct) {
-        if (productService.deleteProduct(removeProduct)) {
+     productService.deleteProduct(removeProduct);
 
-            List<Product> products = productService.findAllProducts();
-            model.addAttribute("productList", products);
-
-        }
-        return "product/product_list";
+        return "redirect:/product/product-list";
 
     }
 
