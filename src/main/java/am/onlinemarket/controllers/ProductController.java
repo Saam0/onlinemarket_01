@@ -6,12 +6,18 @@ import am.onlinemarket.models.Supplier;
 import am.onlinemarket.services.ProductCategoryService;
 import am.onlinemarket.services.ProductService;
 import am.onlinemarket.services.SupplierService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/product")
@@ -25,6 +31,12 @@ public class ProductController {
 
     @Autowired
     ProductCategoryService productCategoryService;
+
+    @Autowired
+    Logger logger;
+
+    @Value("${static.img.path}")
+    private String imagePath;
 
 
     @GetMapping("/add")
@@ -45,25 +57,38 @@ public class ProductController {
     @PostMapping("/add")
     public String addProductPost(Model model,
                                  @ModelAttribute("productForm") Product productForm,
-                                 @RequestParam(value = "supplierName")String supplierName)
-
-//                                 @RequestParam(value = "category")String category)
-    {
+                                 @ModelAttribute("supplier") Supplier supplier,
+                                 @RequestParam("file") MultipartFile file)  throws IOException{
 
 
-//        System.out.println(category);
+        logger.info("file ====" + file.getName());
 
-        if (!supplierService.findByName(supplierName).isPresent()){
-            System.out.println("KKKKKKKKKKKK");
-            Supplier supplier = new Supplier();
-            supplier.setSupplierName(supplierName);
-            supplierService.save(supplier);
-            productForm.setSupplier(supplier);
+        if (!file.isEmpty()){
+            File imageDir = new File(imagePath);
+            if (!imageDir.exists()){
+                imageDir.mkdir();
+            }
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName = uuidFile + "." + file.getOriginalFilename();
+            file.transferTo(new File(imagePath + "/" + resultFileName));
+
+            productForm.setImage(resultFileName);
         }
 
+        logger.info("supplier name = " + supplier.getSupplierName());
 
-        Supplier supplier = supplierService.findByName(supplierName).get();
-        productForm.setSupplier(supplier);
+//        Supplier supp = supplierService.save(supplier);
+//        productForm.setSupplier(supp);
+
+
+        if (!supplierService.findByName(supplier.getSupplierName()).isPresent()) {
+            supplierService.save(supplier);
+            productForm.setSupplier(supplier);
+
+        }else {
+//            Supplier newSupplier = supplierService.findByName(supplier.getSupplierName()).get();
+            productForm.setSupplier(supplierService.findByName(supplier.getSupplierName()).get());
+        }
 
         productService.save(productForm);
 
@@ -85,7 +110,7 @@ public class ProductController {
     @PostMapping("/product-list")
     public String dellProduct(Model model,
                               @RequestParam(value = "removeProduct") Long removeProduct) {
-     productService.deleteProduct(removeProduct);
+        productService.deleteProduct(removeProduct);
 
         return "redirect:/product/product-list";
 

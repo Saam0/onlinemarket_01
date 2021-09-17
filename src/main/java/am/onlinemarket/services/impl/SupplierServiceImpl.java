@@ -1,5 +1,6 @@
 package am.onlinemarket.services.impl;
 
+import am.onlinemarket.exceptions.UserAlreadyExistException;
 import am.onlinemarket.models.Supplier;
 import am.onlinemarket.repositories.SupplierRepository;
 import am.onlinemarket.services.SupplierService;
@@ -18,6 +19,11 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public Supplier save(Supplier supplier) {
+
+//        if (findByName(supplier.getSupplierName()).isPresent()){
+//            throw new UserAlreadyExistException("There is supplier with that name: " + supplier.getSupplierName());
+//        }
+
         return supplierRepository.save(supplier);
     }
 

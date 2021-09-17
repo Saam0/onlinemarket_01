@@ -37,7 +37,7 @@ public class Contact {
     @JoinColumn(name = "contact_id")
     private Set<Supplier> suppliers;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "contact")
     private User user;
 
 }

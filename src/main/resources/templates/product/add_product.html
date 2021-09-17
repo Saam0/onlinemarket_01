@@ -31,7 +31,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form th:action="@{/product/add}" method="post" th:object="${productForm}">
+            <form th:action="@{/product/add}" method="post" th:object="${productForm}" enctype="multipart/form-data">
                 <!--                product name-->
                 <div class="form-group row">
                     <label for="productName" class="col-2 ">Product name</label>
@@ -71,6 +71,13 @@
                     <input type="text" class="form-control col-8" id="supplier" name="supplierName"
                            placeholder="Input supplier name">
                 </div>
+
+                <!--                img-->
+                <div class="form-group row">
+                    <label for="img" class="col-2 ">file</label>
+                    <input type="file" class="form-control col-8" id="img" name="file">
+                </div>
+
 
                 <div class="form-group row">
                     <div class="col-sm-offset-2 col-sm-10">

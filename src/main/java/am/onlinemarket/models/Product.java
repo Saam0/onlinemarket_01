@@ -16,7 +16,6 @@ public class Product {
     private String name;
 
 
-
 //    private DescriptionProduct description;
 
 //    private Volume volume;
@@ -32,11 +31,22 @@ public class Product {
     @Column(nullable = false)
     private Double price;
 
+    private String image;
 
-    @ManyToOne
-    @JoinColumn(name = "id_supplier")
+
+    //    @ManyToOne
+//    @JoinColumn(name = "id_supplier")
+//    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "supplier_id", referencedColumnName = "id")
+
+/*
+
+    @JoinColumn(name = "supplier_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne(optional = false,  fetch = FetchType.LAZY)
+    @MapsId("id")
+*/
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Supplier supplier;
-
-
 
 }

@@ -18,8 +18,11 @@ public class Supplier {
     @Column(nullable = false)
     private String supplierName;
 
+/*
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "supplier")
+    @JoinTable*/
 
-    @OneToMany
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Product> products;
 
 
