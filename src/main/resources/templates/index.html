@@ -136,10 +136,12 @@
         <a class="btn btn-outline-primary" th:href="@{/product/product-list}">Product list</a>
 
     </div>
-
-
 </div>
 
+<div th:if="${productList}!=null">
+    <div th:replace="product/show-products :: show-products"></div>
+
+</div>
 
 </body>
 </html>
