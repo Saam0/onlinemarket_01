@@ -11,6 +11,7 @@
 
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/online-market.js"></script>
+    <script src="/js/bootstrap-input-spinner.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -61,33 +62,32 @@
                     Menu
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li th:each="global:${menuList}">
+                    <li th:each="global:${catalogList}">
                         <a class="dropdown-item" href="#" th:utext="${global.getGlobalType()}">Global type</a>
                         <ul class="dropdown-menu dropdown-submenu">
-                            <li th:each="sub:${menuList}">
+                            <li th:each="sub:${catalogList}">
                                 <a class="dropdown-item" href="#"
                                    th:utext="${sub.getGlobalType()==global.getGlobalType()}?${sub.getSubType()}">Sub
                                     type</a>
 
                                 <ul class="dropdown-menu dropdown-submenu">
 
-                                    <li th:each="type:${menuList}">
+                                    <li th:each="type:${catalogList}">
 
 
-                                        <form th:action="@{/show}" th:method="get" th:if="${sub.getSubType()==type.getSubType()}">
-                                            <input type="hidden" th:value = "${type.getType()}"
-                                                   name="productType"  />
+                                        <form th:action="@{/show}" th:method="get"
+                                              th:if="${sub.getSubType()==type.getSubType()}">
+                                            <input type="hidden" th:value="${type.getType()}"
+                                                   name="productType"/>
 
-                                            <button type="submit" th:utext="${type.getType()}" >
+                                            <button type="submit" th:utext="${type.getType()}">
                                                 type
                                             </button>
                                         </form>
 
 
-
-
-                                       <!-- <button class="dropdown-item" type="submit" th:href="@{/show}" th:name="productType" th:value="${type.getType()}"
-                                                th:utext="${sub.getSubType()==type.getSubType()}?${type.getType()}">Type</button>-->
+                                        <!-- <button class="dropdown-item" type="submit" th:href="@{/show}" th:name="productType" th:value="${type.getType()}"
+                                                 th:utext="${sub.getSubType()==type.getSubType()}?${type.getType()}">Type</button>-->
                                     </li>
                                 </ul>
                             </li>

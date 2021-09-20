@@ -23,10 +23,17 @@ public class Product {
 
 //    private boolean available;
 
-
+/*
     @ManyToOne
     @JoinColumn(name = "id_category")
-    private ProductCategory productCategory;
+    private ProductCategory productCategory;*/
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Catalog catalog;
+
+
+
+
 
     @Column(nullable = false)
     private Double price;

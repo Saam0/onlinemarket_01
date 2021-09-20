@@ -14,7 +14,7 @@ public interface ProductService {
     List<Product> findAllProducts();
     Optional<Product> findById(Long id);
     Optional<Product> findByName(String productName);
-    Optional<Product> findByCategory(String category);
+    List<Product> findByType(String category);
     boolean deleteProduct(Long id);
 
 }

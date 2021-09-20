@@ -37,8 +37,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> findByCategory(String category) {
-        return Optional.empty();
+    public List<Product> findByType(String type) {
+        return productRepository.findByCatalog_Type(type);
     }
 
     @Override

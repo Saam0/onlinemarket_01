@@ -1,11 +1,7 @@
 package am.onlinemarket.controllers;
 
-import am.onlinemarket.models.Product;
-import am.onlinemarket.models.ProductCategory;
-import am.onlinemarket.models.Supplier;
-import am.onlinemarket.services.ProductCategoryService;
-import am.onlinemarket.services.ProductService;
-import am.onlinemarket.services.SupplierService;
+import am.onlinemarket.models.*;
+import am.onlinemarket.services.*;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +29,12 @@ public class ProductController {
     ProductCategoryService productCategoryService;
 
     @Autowired
+    CatalogService catalogService;
+/*
+    @Autowired
+    CartItemService cartItemService;*/
+
+    @Autowired
     Logger logger;
 
     @Value("${static.img.path}")
@@ -46,8 +48,11 @@ public class ProductController {
 //        model.addAttribute("supplierForm", new Supplier());
 
         List<ProductCategory> productCategories = productCategoryService.findAllProductCategory();
+        List<Catalog> catalogList = catalogService.findAllCatalog();
 
-        model.addAttribute("productCategory", productCategories);
+
+        model.addAttribute("catalogList", catalogList);
+//        model.addAttribute("productCategory", productCategories);
         model.addAttribute("productForm", new Product());
 
         return "product/add_product";
@@ -69,7 +74,7 @@ public class ProductController {
                 imageDir.mkdir();
             }
             String uuidFile = UUID.randomUUID().toString();
-            String resultFileName = uuidFile + "." + file.getOriginalFilename();
+            String resultFileName = uuidFile + "-" + file.getOriginalFilename();
             file.transferTo(new File(imagePath + "/" + resultFileName));
 
             productForm.setImage(resultFileName);
@@ -115,5 +120,14 @@ public class ProductController {
         return "redirect:/product/product-list";
 
     }
+
+    @GetMapping("/cart")
+    public String addCart(Model model){
+
+        model.addAttribute("cart", new CartItem());
+        return "cart";
+    }
+
+
 
 }

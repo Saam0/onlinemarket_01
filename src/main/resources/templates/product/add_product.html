@@ -48,11 +48,11 @@
    -->
                 <!--                productCategory-->
                 <div class="form-group row">
-                    <label for="category" class="col-2">Product Category</label>
+                    <label for="type" class="col-2">Product Category</label>
                     <div class="btn-group">
-                        <select class="form-control col-8" id="category" name="category" th:field="*{productCategory}">
-                            <option th:each="categ : ${productCategory}" th:text="${categ.categoryName}"
-                                    th:value="${categ.id}"></option>
+                        <select class="form-control col-8" id="type" name="type" th:field="*{catalog}">
+                            <option th:each="cat : ${catalogList}" th:text="${cat.type}"
+                                    th:value="${cat.id}"></option>
                         </select>
                     </div>
                 </div>
