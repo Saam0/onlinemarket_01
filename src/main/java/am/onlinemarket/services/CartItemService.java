@@ -9,11 +9,9 @@ import java.util.Optional;
 @Service
 public interface CartItemService {
 
-/*
 
     CartItem save(CartItem cartItem);
     Optional<CartItem> findById(Long id);
-    Optional<CartItem> findByCartId(Long id);
-*/
+//    Optional<CartItem> findByCartItemId(Long id);
 
 }

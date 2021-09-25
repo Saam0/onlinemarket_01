@@ -1,9 +1,12 @@
 package am.onlinemarket.services.impl;
 
+import am.onlinemarket.models.CartItem;
 import am.onlinemarket.repositories.CartItemRepository;
 import am.onlinemarket.services.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class CartItemServiceImpl implements CartItemService {
@@ -11,20 +14,19 @@ public class CartItemServiceImpl implements CartItemService {
     @Autowired
     CartItemRepository cartItemRepository;
 
- /*   @Override
+    @Override
     public CartItem save(CartItem cartItem) {
-        return cartItemServiceRepository.save(cartItem);
+        return cartItemRepository.save(cartItem);
     }
 
     @Override
     public Optional<CartItem> findById(Long id) {
-        return cartItemServiceRepository.findById(id);
+        return cartItemRepository.findById(id);
     }
 
-    @Override
-    public Optional<CartItem> findByCartId(Long id) {
-        return cartItemServiceRepository.findByCartId(id);
-    }
-*/
+//    @Override
+//    public Optional<CartItem> findByCartItemId(Long id) {
+//        return cartItemRepository.findByCartItemId(id);
+//    }
 
 }
